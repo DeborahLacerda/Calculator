@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Deborah Lacerda" />
+    <meta name="email" content="lace0115@algonquinlive.com" />
+
+    <style>
+      body {
+        width: 500px;
+        margin: 4% auto;
+        font-family: "Source Sans Pro", sans-serif;
+        letter-spacing: 5px;
+        font-size: 1.8rem;
+        background-color: rgb(154, 149, 145);
+      }
+
+      #mode {
+        color: #180202;
+        background-color: black;
+        border: none;
+        border-radius: 50%;
+      }
+      /* light theme */
+      .calculator {
+        padding: 60px;
+        box-shadow: 0px 21px 24px 0px rgba(189, 12, 162, 0.2);
+        border-radius: 50px;
+        background-color: #d9d9ec;
+      }
+
+      .display {
+        background-color: whitesmoke;
+        border: 1px solid #2917b1;
+        border-radius: 1px;
+        height: 60px;
+        padding-right: 15px;
+        padding-top: 10px;
+        text-align: right;
+        margin-right: 6px;
+        font-size: 2.5rem;
+        overflow-x: auto;
+        transition: all 0.2s ease-in-out;
+      }
+      .display:hover {
+        border: 1px solid #f5d3d3;
+        box-shadow: inset 0px 1px 4px 0px #1922d580;
+      }
+      .button {
+        display: inline-block;
+        border: 1px solid #e9aed4;
+        border-radius: 15px;
+        width: 80px;
+        text-align: center;
+        padding: 15px;
+        margin: 20px 4px 10px 0;
+        cursor: pointer;
+        transition: border-color 0.3s ease-in-out, background-color 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .button:active {
+        font-weight: bold;
+      }
+
+      .operators {
+        background-color: #b4deec;
+      }
+      .operators:hover {
+        background-color: #7c81e9;
+      }
+
+      .numbers {
+        background-color: #dddddd;
+      }
+
+      .numbers:hover {
+        background-color: #f37ac9;
+      }
+
+      .equal {
+        display: inline-block;
+        background-color: #3eafc9;
+      }
+
+      .equal:hover {
+        background-color: #f93070;
+      }
+
+      /* dark theme */
+      .dark-mode .calculator {
+        padding: 60px;
+        box-shadow: 0px 21px 24px 0px rgba(189, 12, 162, 0.2);
+        border-radius: 50px;
+        background-color: #1c1c70;
+      }
+
+      .dark-mode .display {
+        background-color: grey;
+        border: 1px solid #17b140;
+        border-radius: 1px;
+        height: 60px;
+        padding-right: 15px;
+        padding-top: 10px;
+        text-align: right;
+        margin-right: 6px;
+        font-size: 2.5rem;
+        overflow-x: auto;
+        transition: all 0.2s ease-in-out;
+        color: rgb(235, 218, 186);
+      }
+      .dark-mode .display:hover {
+        border: 1px solid #a2eabc;
+        box-shadow: inset 0px 1px 4px 0px #242bb680;
+      }
+      .dark-mode .button {
+        display: inline-block;
+        border: 1px solid #3d283d;
+        border-radius: 15px;
+        width: 80px;
+        text-align: center;
+        padding: 15px;
+        margin: 20px 4px 10px 0;
+        cursor: pointer;
+        transition: border-color 0.3s ease-in-out, background-color 0.3s,
+          box-shadow 0.3s;
+        color: wheat;
+      }
+
+      .dark-mode .button:active {
+        font-weight: bold;
+      }
+
+      .dark-mode .operators {
+        background-color: #195468;
+      }
+      .dark .operators:hover {
+        background-color: #464970;
+      }
+
+      .dark-mode .numbers {
+        background-color: #522f2f;
+      }
+
+      .dark-mode .numbers:hover {
+        background-color: #582f4a;
+      }
+
+      .dark-mode .equal {
+        display: inline-block;
+        background-color: #303069;
+      }
+
+      .dark-mode .equal:hover {
+        background-color: #322c5f;
+      }
+    </style>
+    <title>Very Simple Calculator</title>
+  </head>
+  <body>
+    <template>
+      <div>
+        <div>
+          <div>
+            <p>{{ getOperation }}</p>
+            <p>{{ getResult }}</p>
+          </div>
+
+          <div class="botoes">
+            <button @click="handleClickAC()">AC</button>
+            <button @click="handleClickDel()">DEL</button>
+            <button @click="handleClick('/')">/</button>
+
+            <button @click="handleClick('7')">7</button>
+            <button @click="handleClick('8')">8</button>
+            <button @click="handleClick('9')">9</button>
+            <button @click="handleClick('x')">X</button>
+
+            <button @click="handleClick('4')">4</button>
+            <button @click="handleClick('5')">5</button>
+            <button @click="handleClick('6')">6</button>
+            <button @click="handleClick('-')">-</button>
+
+            <button @click="handleClick('3')">3</button>
+            <button @click="handleClick('2')">2</button>
+            <button @click="handleClick('1')">1</button>
+            <button @click="handleClick('-')">+</button>
+
+            <button @click="handleClick('0')">0</button>
+            <button @click="handleClick('.')">.</button>
+            <button @click="handleClickResult()">=</button>
+          </div>
+        </div>
+      </div>
+    </template>
+    <script>
+      //dark
+      function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+      }
+
+      export default {
+        data() {
+          return {
+            getOperation: "",
+            getResult: "0",
+          };
+        },
+        methods: {
+          handleClickAC() {
+            this.getResult = "0";
+          },
+          handleClick(par) {
+            if (this.getResult === "0") {
+              this.getResult = par;
+            } else {
+              this.getResult += par;
+            }
+          },
+          handleClickDel() {
+            if (this.getResult.length > 1) {
+              this.getResult = this.getResult.substring(
+                0,
+                this.getResult.length - 1
+              );
+            } else {
+              this.getResult = "0";
+            }
+          },
+          handleClickResult() {
+            let operation = this.getResult;
+            this.getOperation = operation;
+            operation = operation.replace("x", "*");
+            this.getResult = eval(operation);
+          },
+        },
+      };
+    </script>
+  </body>
+</html>
