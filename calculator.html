@@ -167,21 +167,21 @@
 
       <div class="keypad">
         <!-- reformat button pad as needed this is simply for layout -->
-        <button onclick="numericButton(7)" class="button numbers">7</button>
-        <button onclick="numericButton(8)" class="button numbers">8</button>
-        <button onclick="numericButton(9)" class="button numbers">9</button>
+        <button onclick="numericButton('7')" class="button numbers">7</button>
+        <button onclick="numericButton('8')" class="button numbers">8</button>
+        <button onclick="numericButton('9')" class="button numbers">9</button>
         <button onclick="operatorButton('-')" class="button operators">
           -
         </button>
-        <button onclick="numericButton(4)" class="button numbers">4</button>
-        <button onclick="numericButton(5)" class="button numbers">5</button>
-        <button onclick="numericButton(6)" class="button numbers">6</button>
+        <button onclick="numericButton('4')" class="button numbers">4</button>
+        <button onclick="numericButton('5')" class="button numbers">5</button>
+        <button onclick="numericButton('6')" class="button numbers">6</button>
         <button onclick="operatorButton('/')" class="button operators">
           /
         </button>
-        <button onclick="numericButton(1)" class="button numbers">1</button>
-        <button onclick="numericButton(2)" class="button numbers">2</button>
-        <button onclick="numericButton(3)" class="button numbers">3</button>
+        <button onclick="numericButton('1')" class="button numbers">1</button>
+        <button onclick="numericButton('2')" class="button numbers">2</button>
+        <button onclick="numericButton('3')" class="button numbers">3</button>
         <button onclick="operatorButton('*')" class="button operators">
           X
         </button>
@@ -206,8 +206,8 @@
       }
 
       //cal
-      let num1;
-      let num2;
+      let num1 = "";
+      let num2 = "";
       let ope;
       let result;
 
@@ -216,12 +216,13 @@
       }
 
       function numericButton(number) {
-        if (isNaN(num1)) {
-          num1 = number;
+        if (ope == undefined) {
+          num1 = num1 + number;
           display(num1);
         } else {
-          num2 = number;
-          display(num1 + ope + num2);
+          num2 = num2 + number;
+          let text = num1 + ope + num2;
+          display(text);
         }
       }
 
@@ -229,15 +230,18 @@
         ope = operador;
         display(num1 + ope);
       }
+
       function calculate() {
+        let int1 = Number(num1);
+        let int2 = Number(num2);
         if (ope === "+") {
-          result = num1 + num2;
+          result = int1 + int2;
         } else if (ope === "-") {
-          result = num1 - num2;
+          result = int1 - int2;
         } else if (ope === "*") {
-          result = num1 * num2;
+          result = int1 * int2;
         } else if (ope === "/") {
-          result = num1 / num2;
+          result = int1 / int2;
         }
 
         display(result);
