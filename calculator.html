@@ -227,10 +227,14 @@
       }
 
       function operatorButton(operador) {
+        if (num2 != "") {
+          calculate();
+        }
         if (result != undefined) {
           num1 = result;
         }
         ope = operador;
+
         display(num1 + ope);
       }
 
