@@ -167,33 +167,29 @@
 
       <div class="keypad">
         <!-- reformat button pad as needed this is simply for layout -->
-        <button onclick="numericButton('7')" class="button numbers">7</button>
-        <button onclick="numericButton('8')" class="button numbers">8</button>
-        <button onclick="numericButton('9')" class="button numbers">9</button>
+        <button onclick="numericButton(7)" class="button numbers">7</button>
+        <button onclick="numericButton(8)" class="button numbers">8</button>
+        <button onclick="numericButton(9)" class="button numbers">9</button>
         <button onclick="operatorButton('-')" class="button operators">
           -
         </button>
-        <button onclick="numericButton('4')" class="button numbers">4</button>
-        <button onclick="numericButton('5')" class="button numbers">5</button>
-        <button onclick="numericButton('6')" class="button numbers">6</button>
+        <button onclick="numericButton(4)" class="button numbers">4</button>
+        <button onclick="numericButton(5)" class="button numbers">5</button>
+        <button onclick="numericButton(6)" class="button numbers">6</button>
         <button onclick="operatorButton('/')" class="button operators">
           /
         </button>
-        <button onclick="numericButton('1')" class="button numbers">1</button>
-        <button onclick="numericButton('2')" class="button numbers">2</button>
-        <button onclick="numericButton('3')" class="button numbers">3</button>
+        <button onclick="numericButton(1)" class="button numbers">1</button>
+        <button onclick="numericButton(2)" class="button numbers">2</button>
+        <button onclick="numericButton(3)" class="button numbers">3</button>
         <button onclick="operatorButton('*')" class="button operators">
           X
         </button>
-        <button onclick="numericButton('0')" class="button numbers">0</button>
+        <button onclick="numericButton(0)" class="button numbers">0</button>
         <button onclick="clearAll()" class="button operators" id="clear">
           C
         </button>
-        <button
-          onclick="calculateequal(equal)"
-          class="button equal"
-          id="result"
-        >
+        <button onclick="calculate()" class="button equal" id="result">
           =
         </button>
         <button onclick="operatorButton('+')" class="button operators">
@@ -210,30 +206,23 @@
       }
 
       //cal
-      let = a;
-      let = b;
+      let num1;
+      let num2;
+      let ope;
+      let result;
 
-      operatorButton() {
-          let computation;
-          let = a;
-      let = b;
-          if (isNaN(a) || isNaN(b)) return;
-          switch () {
-            case "+":
-              computation = a + b;
-              break;
-            case "-":
-              computation = a - b;
-              break;
-            case "*":
-              computation = a * b;
-              break;
-            case "÷":
-              computation = a / b;
-              break;
-            default:
-              return;
-          }}
+      function numericButton(number) {
+        if (isNaN(num1)) num1 = number;
+        else num2 = number;
+      }
+
+      function operatorButton(operador) {
+        ope = operador;
+      }
+      function calculate() {
+        result = num1 + num2;
+        document.querySelector("#display").textContent = result;
+      }
     </script>
   </body>
 </html>
