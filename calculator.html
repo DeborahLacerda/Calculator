@@ -211,17 +211,28 @@
       let ope;
       let result;
 
+      function display(text) {
+        document.querySelector("#display").textContent = text;
+      }
+
       function numericButton(number) {
-        if (isNaN(num1)) num1 = number;
-        else num2 = number;
+        if (isNaN(num1)) {
+          num1 = number;
+          display(num1);
+        } else {
+          num2 = number;
+          display(num1 + ope + num2);
+        }
       }
 
       function operatorButton(operador) {
         ope = operador;
+        display(num1 + ope);
       }
       function calculate() {
         result = num1 + num2;
-        document.querySelector("#display").textContent = result;
+        display(result);
+        num1 = num2 = undefined;
       }
     </script>
   </body>
