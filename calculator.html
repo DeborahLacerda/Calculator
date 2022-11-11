@@ -230,7 +230,12 @@
         display(num1 + ope);
       }
       function calculate() {
-        result = num1 + num2;
+        if (ope === "+") {
+          result = num1 + num2;
+        } else if (ope === "-") {
+          result = num1 - num2;
+        }
+
         display(result);
         num1 = num2 = undefined;
       }
