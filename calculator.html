@@ -227,6 +227,9 @@
       }
 
       function operatorButton(operador) {
+        if (result != undefined) {
+          num1 = result;
+        }
         ope = operador;
         display(num1 + ope);
       }
@@ -245,11 +248,14 @@
         }
 
         display(result);
-        num1 = num2 = undefined;
+        num1 = num2 = "";
+        ope = undefined;
       }
 
       function clearAll() {
-        num1 = num2 = result = ope = undefined;
+        num1 = "";
+        num2 = "";
+        result = ope = undefined;
         display(0);
       }
     </script>
