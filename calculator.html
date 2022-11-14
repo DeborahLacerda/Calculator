@@ -10,53 +10,56 @@
 
     <style>
       body {
-        width: 500px;
-        margin: 4% auto;
+        margin: 10% auto;
         font-family: "Source Sans Pro", sans-serif;
-        letter-spacing: 5px;
-        font-size: 1.8rem;
         background-color: rgb(154, 149, 145);
       }
 
       #mode {
-        color: #180202;
-        background-color: black;
+        background-color: rgb(75, 72, 72);
         border: none;
+        font-size: 13.5pt;
         border-radius: 50%;
+        margin: 4% 0 0 42%;
       }
+
+      .ronw {
+        width: 100%;
+      }
+
       /* light theme */
       .calculator {
-        padding: 60px;
-        box-shadow: 0px 21px 24px 0px rgba(189, 12, 162, 0.2);
+        width: 13%;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0px 21px 24px 10px rgba(189, 12, 162, 0.2);
         border-radius: 50px;
         background-color: #d9d9ec;
       }
 
       .display {
         background-color: whitesmoke;
-        border: 1px solid #2917b1;
+        border: 1px solid #757bc8;
         border-radius: 1px;
-        height: 60px;
+        height: auto;
         padding-right: 15px;
         padding-top: 10px;
         text-align: right;
         margin-right: 6px;
-        font-size: 2.5rem;
+        font-size: 21.5pt;
         overflow-x: auto;
         transition: all 0.2s ease-in-out;
       }
-      .display:hover {
-        border: 1px solid #f5d3d3;
-        box-shadow: inset 0px 1px 4px 0px #1922d580;
-      }
+
       .button {
         display: inline-block;
-        border: 1px solid #e9aed4;
+        border: 1px solid #757bc8;
         border-radius: 15px;
-        width: 80px;
+        font-size: 17.5pt;
+        width: 19%;
         text-align: center;
-        padding: 15px;
-        margin: 20px 4px 10px 0;
+        padding: 14px;
+        margin: 5px 5px 5px 5px;
         cursor: pointer;
         transition: border-color 0.3s ease-in-out, background-color 0.3s,
           box-shadow 0.3s;
@@ -67,23 +70,23 @@
       }
 
       .operators {
-        background-color: #b4deec;
+        background-color: #cbb2fe;
       }
       .operators:hover {
-        background-color: #7c81e9;
+        background-color: #8187dc;
       }
 
       .numbers {
-        background-color: #dddddd;
+        background-color: #e0c3fc;
       }
 
       .numbers:hover {
-        background-color: #f37ac9;
+        background-color: #ada7ff;
       }
 
       .equal {
         display: inline-block;
-        background-color: #3eafc9;
+        background-color: #757bc8;
       }
 
       .equal:hover {
@@ -92,41 +95,20 @@
 
       /* dark theme */
       .dark-mode .calculator {
-        padding: 60px;
-        box-shadow: 0px 21px 24px 0px rgba(189, 12, 162, 0.2);
-        border-radius: 50px;
-        background-color: #1c1c70;
+        box-shadow: 0px 21px 24px 0px #006466;
+        background-color: #212f45;
       }
 
       .dark-mode .display {
-        background-color: grey;
-        border: 1px solid #17b140;
-        border-radius: 1px;
-        height: 60px;
-        padding-right: 15px;
-        padding-top: 10px;
-        text-align: right;
-        margin-right: 6px;
-        font-size: 2.5rem;
-        overflow-x: auto;
-        transition: all 0.2s ease-in-out;
+        background-color: #403d3d;
+        border: 1px solid #006466;
+
         color: rgb(235, 218, 186);
       }
-      .dark-mode .display:hover {
-        border: 1px solid #a2eabc;
-        box-shadow: inset 0px 1px 4px 0px #242bb680;
-      }
+
       .dark-mode .button {
-        display: inline-block;
-        border: 1px solid #3d283d;
-        border-radius: 15px;
-        width: 80px;
-        text-align: center;
-        padding: 15px;
-        margin: 20px 4px 10px 0;
-        cursor: pointer;
-        transition: border-color 0.3s ease-in-out, background-color 0.3s,
-          box-shadow 0.3s;
+        border: 1px solid #272640;
+
         color: wheat;
       }
 
@@ -135,27 +117,32 @@
       }
 
       .dark-mode .operators {
-        background-color: #195468;
+        background-color: #272640;
       }
       .dark .operators:hover {
-        background-color: #464970;
+        background-color: #1b3a4b;
       }
 
       .dark-mode .numbers {
-        background-color: #522f2f;
+        background-color: #065a60;
       }
 
       .dark-mode .numbers:hover {
-        background-color: #582f4a;
+        background-color: #006466;
       }
 
       .dark-mode .equal {
         display: inline-block;
-        background-color: #303069;
+        background-color: #4d194d;
       }
 
       .dark-mode .equal:hover {
-        background-color: #322c5f;
+        background-color: #3e1f47;
+      }
+      @media screen and (max-width: 500px) {
+        .calculator {
+          width: 65%;
+        }
       }
     </style>
 
@@ -167,34 +154,42 @@
 
       <div class="keypad">
         <!-- reformat button pad as needed this is simply for layout -->
-        <button onclick="numericButton('7')" class="button numbers">7</button>
-        <button onclick="numericButton('8')" class="button numbers">8</button>
-        <button onclick="numericButton('9')" class="button numbers">9</button>
-        <button onclick="operatorButton('-')" class="button operators">
-          -
-        </button>
-        <button onclick="numericButton('4')" class="button numbers">4</button>
-        <button onclick="numericButton('5')" class="button numbers">5</button>
-        <button onclick="numericButton('6')" class="button numbers">6</button>
-        <button onclick="operatorButton('/')" class="button operators">
-          /
-        </button>
-        <button onclick="numericButton('1')" class="button numbers">1</button>
-        <button onclick="numericButton('2')" class="button numbers">2</button>
-        <button onclick="numericButton('3')" class="button numbers">3</button>
-        <button onclick="operatorButton('*')" class="button operators">
-          X
-        </button>
-        <button onclick="numericButton(0)" class="button numbers">0</button>
-        <button onclick="clearAll()" class="button operators" id="clear">
-          C
-        </button>
-        <button onclick="calculate()" class="button equal" id="result">
-          =
-        </button>
-        <button onclick="operatorButton('+')" class="button operators">
-          +
-        </button>
+        <div class="ronw">
+          <button onclick="numericButton('7')" class="button numbers">7</button>
+          <button onclick="numericButton('8')" class="button numbers">8</button>
+          <button onclick="numericButton('9')" class="button numbers">9</button>
+          <button onclick="operatorButton('-')" class="button operators">
+            -
+          </button>
+        </div>
+        <div class="ronw">
+          <button onclick="numericButton('4')" class="button numbers">4</button>
+          <button onclick="numericButton('5')" class="button numbers">5</button>
+          <button onclick="numericButton('6')" class="button numbers">6</button>
+          <button onclick="operatorButton('/')" class="button operators">
+            /
+          </button>
+        </div>
+        <div class="ronw">
+          <button onclick="numericButton('1')" class="button numbers">1</button>
+          <button onclick="numericButton('2')" class="button numbers">2</button>
+          <button onclick="numericButton('3')" class="button numbers">3</button>
+          <button onclick="operatorButton('*')" class="button operators">
+            X
+          </button>
+        </div>
+        <div class="ronw">
+          <button onclick="numericButton(0)" class="button numbers">0</button>
+          <button onclick="clearAll()" class="button operators" id="clear">
+            C
+          </button>
+          <button onclick="calculate()" class="button equal" id="result">
+            =
+          </button>
+          <button onclick="operatorButton('+')" class="button operators">
+            +
+          </button>
+        </div>
         <button onclick="myFunction()" id="mode">🌙</button>
       </div>
     </div>
@@ -252,7 +247,8 @@
         }
 
         display(result);
-        num1 = num2 = "";
+        num1 = "";
+        num2 = "";
         ope = undefined;
       }
 
